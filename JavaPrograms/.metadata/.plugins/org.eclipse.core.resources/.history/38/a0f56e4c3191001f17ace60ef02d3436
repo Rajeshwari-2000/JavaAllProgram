@@ -1,0 +1,69 @@
+package com.demo.service;
+
+import java.util.Scanner;
+
+import com.demo.beans.Student;
+
+public class StudentService {
+	private static Student[]Studarr;
+	private static int cnt;
+	static {
+		Studarr=new Student[10];
+		Studarr[0]=new Student(1,"Rajeshwari",52,84,64);
+		Studarr[1]=new Student(2,"Riya",54,88,44);
+		
+		cnt=2;
+	}
+
+
+	public void AddNewStudents() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the student id");
+		int studentId=sc.nextInt();
+
+		System.out.println("Enter the student name");
+		String name=sc.next();
+
+		System.out.println("Enter the m1 marks");
+		float m1=sc.nextFloat();
+
+		System.out.println("Enter the m2 marks");
+		float m2=sc.nextFloat();
+
+		System.out.println("Enter the m2 marks");
+		float m3=sc.nextFloat();
+		
+        Student newStudent = new Student(studentId,name,m1,m2,m3);
+        Studarr[cnt] = newStudent; 
+        cnt++; 
+        System.out.println("Student added successfully.");
+	}
+
+	public Student[]  displayStudents() {
+		return Studarr;
+
+	}
+
+	public void searchById(int studentid) {
+		if (cnt == 0) {
+            System.out.println("No students available.");
+            return;
+        }
+        for (int i = 0; i < cnt; i++) {
+            System.out.println(Studarr[i]);
+        }
+    }
+
+	public void searchByname(String name) {
+		 boolean found = false;
+	        for (int i = 0; i < cnt; i++) {
+	            if (Studarr[i].getName().equalsIgnoreCase(name)) {
+	                System.out.println(Studarr[i]);
+	                found = true;
+	            }
+	        }
+	        if (!found) {
+	            System.out.println("Student with name " + name + " not found.");
+	        }
+	}
+}

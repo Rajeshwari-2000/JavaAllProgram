@@ -1,0 +1,50 @@
+package com.demo.dao;
+
+import java.util.List;
+import java.util.Scanner;
+
+import com.demo.beans.Employee;
+
+public class EmployeeServiceImpl implements EmployeeService {
+	private EmployeeDao edao;
+
+	@Override
+	public void readFile(String string) {
+		
+	}
+
+	@Override
+	public void addnewEmployee() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter id");
+		int id=sc.nextInt();
+		System.out.println("enter name");
+		String nm=sc.next();
+		System.out.println("enter sal");
+		double sal=sc.nextDouble();
+		Employee e=new Employee(id,nm,sal,sal*0.10);
+		edao.save(e);
+		
+	}
+
+	@Override
+	public boolean deleteById(int id) {
+		return false;
+	}
+
+	@Override
+	public boolean updateById(int id, double sal) {
+		return false;
+	}
+
+	@Override
+	public List<Employee> getAll() {
+		return null;
+	}
+
+	@Override
+	public void writeFile(String string) {
+		
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.demo.test;
+
+import java.io.BufferedOutputStream;
+import java.io.File;
+
+public class TestBufferedInputStream {
+
+	public static void main(String[] args) {
+		
+		File f=new File("test1copy.text");
+		BufferedOutputStream bos=null;
+		try {
+			if(f.exists()) {
+				append mode bos=new BufferedOutputStream()
+			}
+		}
+		// TODO Auto-generated method stub
+
+	}
+
+}

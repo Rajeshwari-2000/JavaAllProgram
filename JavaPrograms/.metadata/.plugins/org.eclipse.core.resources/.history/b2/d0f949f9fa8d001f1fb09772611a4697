@@ -1,0 +1,30 @@
+package com.demo.test;
+
+import java.util.Scanner;
+
+import com.demo.beans.SearchData;
+
+public class TestSearch {
+	public static void main(String[] args) {
+
+
+
+		String[] str= {"happy","enjoy","check"};
+		MySearchThread[] sthread=new MySearchThread[String.length()];
+		Scanner sc=new Scanner(System.in);
+		SearchData sdata=new SearchData();
+		for(int i=0; i<str.length ; i++) {
+			System.out.println("searching"+ str[i]);
+			sthread[i]=new MySearchThread();
+			sthread[i].start();
+		}
+
+		for(int i=0;i<str.length;i++) {
+			try {
+				sthread[i].join();
+			}catch(InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+}

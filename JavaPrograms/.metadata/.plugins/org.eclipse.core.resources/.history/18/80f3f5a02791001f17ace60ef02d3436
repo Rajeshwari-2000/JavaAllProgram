@@ -1,0 +1,65 @@
+package com.demo.test;
+
+import java.util.Scanner;
+
+import com.demo.beans.Student;
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("1.DisplayAll\n2.Search by Id\n3.Search by Name\n4.Calculate GPA\n5.Exit");
+		 System.out.print("Enter your choice: ");
+         int choice = sc.nextInt();
+         sc.nextLine(); 
+do {
+         switch (choice) {
+             case 1:
+                 displayStudents();
+                 break;
+             case 2:
+                 System.out.print("Enter Student ID to search: ");
+                 String studentid = sc.nextLine();
+                 searchById(studentid);
+                 break;
+             case 3:
+                 System.out.print("Enter Student Name to search: ");
+                 String name = sc.nextLine();
+                 searchByname(name);
+                 break;
+             case 4:
+                 System.out.print("Enter Student ID to calculate GPA: ");
+                 int studentid1= sc.nextInt();
+                 searchById(studentid1); 
+                 break;
+             case 5:
+                 System.out.println("Exiting the program.");
+                 sc.close();
+                 return;
+             default:
+                 System.out.println("Invalid choice. Please try again.");
+         }
+	}while(choice!=5);
+
+}
+
+	private static void searchByname(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void searchById(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void searchById(int studentid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private static void displayStudents() {
+		// TODO Auto-generated method stub
+		
+	}
+}

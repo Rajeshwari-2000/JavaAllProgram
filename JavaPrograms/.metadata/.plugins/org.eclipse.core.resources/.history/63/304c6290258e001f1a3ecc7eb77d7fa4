@@ -1,0 +1,24 @@
+package com.demo.thread;
+
+import com.demo.beans.Storage;
+
+public class Producer {
+private Storage s;
+	
+	public Producer(Storage s) {
+		super();
+		this.s = s;
+	}
+
+	public void run() {
+		for(int i=1;i<=10;i++) {
+			s.put(i);
+		}
+		s.setStopFlag(true);
+	}
+
+	public void start() {
+		// TODO Auto-generated method stub
+		
+	}
+}

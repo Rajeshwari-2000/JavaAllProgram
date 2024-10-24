@@ -1,0 +1,20 @@
+package com.demo.test;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+public class TestClass1 {
+public static void main(String[] args) {
+	List<Integer>lst=List.of(25,5,2,32,12,15,5,10,7);
+	List<Integer>lst1=lst.stream().filter(num->num%4==0).collect(Collectors.toList());
+	Optional<Integer>op=lst.stream().filter(num->num%4==0).findAny();
+	if(op.isPresent()) {
+		System.out.println(op.get());
+	}else {
+		System.out.println("not found");
+	}
+	System.out.println();
+	
+}
+}

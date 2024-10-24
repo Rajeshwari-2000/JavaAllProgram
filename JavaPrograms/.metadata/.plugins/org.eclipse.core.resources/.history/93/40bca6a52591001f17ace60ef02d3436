@@ -1,0 +1,16 @@
+package com.demo.test;
+
+import java.util.Scanner;
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		students.add(new Student("1", "Alice", 90, 80, 70));
+        students.add(new Student("2", "Bob", 85, 75, 65));
+        students.add(new Student("3", "Charlie", 70, 60, 50));
+
+	}
+
+}

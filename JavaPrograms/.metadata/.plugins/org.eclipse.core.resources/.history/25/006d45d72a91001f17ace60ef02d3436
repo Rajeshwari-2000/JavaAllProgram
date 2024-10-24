@@ -1,0 +1,58 @@
+package com.demo.test;
+
+import java.util.Scanner;
+
+import com.demo.beans.Student;
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		
+		Scanner sc=new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("1. Add New Student\n2. DisplayAll\n3. Search Student by ID\n4. Search Student by Name\n5. Calculate GPA\n6.Exit");
+            System.out.print("Choice: ");
+            choice = sc.nextInt();
+            sc.nextLine(); 
+
+         switch (choice) {
+         case 1:
+        	 AddNewStudents();
+        	 break;
+        	 
+             case 2:
+                 displayStudents();
+                 break;
+             case 3:
+                 System.out.print("Enter Student ID to search: ");
+                 int studentid = sc.nextInt();
+                 searchById(studentid);
+                 break;
+             case 4:
+                 System.out.print("Enter Student Name to search: ");
+                 String name = sc.nextLine();
+                 searchByname(name);
+                 break;
+             case 5:
+                 System.out.print("Enter Student ID to calculate GPA: ");
+                 int studentid1= sc.nextInt();
+                 searchById(studentid1); 
+                 break;
+             case 6:
+                 System.out.println("Exiting the program.");
+                 sc.close();
+                 return;
+             default:
+                 System.out.println("Invalid choice. Please try again.");
+         }
+	}while(choice!=6);
+
+}
+
+	
+
+	
+
+	
+}

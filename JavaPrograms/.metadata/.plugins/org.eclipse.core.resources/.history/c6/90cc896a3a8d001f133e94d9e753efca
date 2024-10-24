@@ -1,0 +1,13 @@
+package com.demo.test;
+
+import java.io.File;
+
+public class TestBufferedInputStream {
+
+	public static void main(String[] args) {
+		
+	
+
+	}
+
+}

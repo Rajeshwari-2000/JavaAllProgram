@@ -1,0 +1,45 @@
+package com.demo.test;
+
+import java.util.Scanner;
+
+import com.demo.beans.Student;
+
+public class TestStudent {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		Student[] students = new Student[2];
+		
+		  for (int i = 0; i < 2; i++) {
+	            System.out.println("Enter details for Student " + (i + 1) + ":");
+	            
+		System.out.println("enter student Id");
+		int studId=sc.nextInt();
+		
+		System.out.println("enter the name of student");
+		String sName=sc.next();
+		
+		System.out.println("enter the m1 marks of student");
+		int m1=sc.nextInt();
+		
+		System.out.println("enter the m2 marks of student");
+		int m2=sc.nextInt();
+		
+		System.out.println("enter the m3 marks of student");
+		int m3=sc.nextInt();
+		
+		 
+		System.out.println("\nStudent Details:");
+        System.out.println("____________");
+        for (Student student : students) {
+            System.out.println("Student ID: " + student.getStudId());
+            System.out.println("Name: " + student.getsName());
+            System.out.println("M1: " + student.getM1());
+            System.out.println("M2: " + student.getM2());
+            System.out.println("M3: " + student.getM3());
+            System.out.println("");
+        }
+		  }
+	}
+
+}

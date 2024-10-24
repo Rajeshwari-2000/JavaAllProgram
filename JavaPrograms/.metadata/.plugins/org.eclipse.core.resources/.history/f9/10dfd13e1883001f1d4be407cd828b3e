@@ -1,0 +1,110 @@
+package com.service;
+
+import java.util.Scanner;
+
+public class ClubService {
+
+	
+	 private static void addEmployee(Scanner sc) {
+	        System.out.println("1. Salaried Employee\n2. Contract Employee\n3. Vendor\n");
+	        int employeeType = sc.nextInt();
+	        sc.nextLine(); // Consume the newline
+
+	        System.out.print("Enter name: ");
+	        String name = sc.nextLine();
+
+	        switch (employeeType) {
+	            case 1:
+	                System.out.print("Enter salary: ");
+	                double salary = sc.nextDouble();
+	                employees.add(new SalariedEmployee(name, nextId++, salary));
+	                break;
+	            case 2:
+	                System.out.print("Enter hourly rate: ");
+	                double hourlyRate = sc.nextDouble();
+	                employees.add(new ContractEmployee(name, nextId++, hourlyRate));
+	                break;
+	            case 3:
+	                System.out.print("Enter service: ");
+	                String service = sc.nextLine();
+	                employees.add(new Vendor(name, nextId++, service));
+	                break;
+	            default:
+	                System.out.println("Invalid employee type.");
+	        }
+	    }
+
+	    private static void displayAllEmployees() {
+	        if (employees.isEmpty()) {
+	            System.out.println("No employees to display.");
+	        } else {
+	            for (Employee employee : employees) {
+	                System.out.println(employee.getDetails());
+	            }
+	        }
+	    }
+
+	    private static void deleteEmployee(Scanner sc) {
+	        System.out.print("Enter employee ID to delete: ");
+	        int idToDelete = sc.nextInt();
+
+	        boolean found = employees.removeIf(employee -> employee.id == idToDelete);
+
+	        if (found) {
+	            System.out.println("Employee with ID " + idToDelete + " has been deleted.");
+	        } else {
+	            System.out.println("Employee with ID " + idToDelete + " not found.");
+	        }
+	    }
+
+	    private static void editEmployee(Scanner sc) {
+	        System.out.print("Enter employee ID to edit: ");
+	        int idToEdit = sc.nextInt();
+	        sc.nextLine(); // Consume newline
+
+	        for (Employee employee : employees) {
+	            if (employee.id == idToEdit) {
+	                System.out.print("Enter new name (current: " + employee.name + "): ");
+	                String newName = sc.nextLine();
+	                employee.name = newName; // Update name
+
+	                if (employee instanceof SalariedEmployee) {
+	                    System.out.print("Enter new salary (current: " + ((SalariedEmployee) employee).salary + "): ");
+	                    double newSalary = sc.nextDouble();
+	                    ((SalariedEmployee) employee).salary = newSalary; // Update salary
+	                } else if (employee instanceof ContractEmployee) {
+	                    System.out.print("Enter new hourly rate (current: " + ((ContractEmployee) employee).hourlyRate + "): ");
+	                    double newHourlyRate = sc.nextDouble();
+	                    ((ContractEmployee) employee).hourlyRate = newHourlyRate; // Update hourly rate
+	                } else if (employee instanceof Vendor) {
+	                    System.out.print("Enter new service (current: " + ((Vendor) employee).service + "): ");
+	                    String newService = sc.nextLine();
+	                    ((Vendor) employee).service = newService; // Update service
+	                }
+
+	                System.out.println("Employee details updated.");
+	                return;
+	            }
+	        }
+	        System.out.println("Employee with ID " + idToEdit + " not found.");
+	    }
+
+	    private static void searchEmployee(Scanner sc) {
+	        System.out.print("Enter employee ID to search: ");
+	        int idToSearch = sc.nextInt();
+
+	        for (Employee employee : employees) {
+	            if (employee.id == idToSearch) {
+	                System.out.println("Found: " + employee.getDetails());
+	                return;
+	            }
+	        }
+	        System.out.println("Employee with ID " + idToSearch + " not found.");
+	    }
+
+	    private static void sortEmployees() {
+	        Collections.sort(employees, Comparator.comparing(e -> e.name));
+	        System.out.println("Employees sorted by name.");
+	    }
+	}
+

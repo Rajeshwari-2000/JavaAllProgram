@@ -1,0 +1,333 @@
+public class Student {
+    private int SId;
+    private String SName;
+    private String MobNo;
+    private float m1, m2, m3;
+
+    public Student() {
+        this.SId = 0;
+        this.SName = null;
+        this.MobNo = null;
+        this.m1 = 0.0f;
+        this.m2 = 0.0f;
+        this.m3 = 0.0f;
+    }
+
+    public Student(int sId, String sName, String mobNo, float m1, float m2, float m3) {
+        this.SId = sId;
+        this.SName = sName;
+        this.MobNo = mobNo;
+        this.m1 = m1;
+        this.m2 = m2;
+        this.m3 = m3;
+    }
+
+    public int getSId() {
+        return SId;
+    }
+
+    public void setSId(int sId) {
+        this.SId = sId;
+    }
+
+    public String getSName() {
+        return SName;
+    }
+
+    public void setSName(String sName) {
+        this.SName = sName;
+    }
+
+    public String getMobNo() {
+        return MobNo;
+    }
+
+    public void setMobNo(String mobNo) {
+        
+        this.MobNo = mobNo;
+    }
+
+    public float getM1() {
+        return m1;
+    }
+
+    public void setM1(float m1) {
+        this.m1 = m1;
+    }
+
+    public float getM2() {
+        return m2;
+    }
+
+    public void setM2(float m2) {
+        this.m2 = m2;
+    }
+
+    public float getM3() {
+        return m3;
+    }
+
+    public void setM3(float m3) {
+        this.m3 = m3;
+    }
+
+    public float calculateAverage() {
+        return (m1 + m2 + m3) / 3;
+    }
+
+    
+    public String toString() {
+        return "Id: " + SId + "\nName: " + SName + "\nMobNo: " + MobNo + "\nM1: " + m1 + "\nM2: " + m2 + "\nM3: " + m3 + "\nAverage: " + calculateAverage();
+    }
+
+     
+    
+}
+=============================================================================================================================================================
+
+
+import java.util.Scanner;
+
+public class StudentService {
+
+	private static Student[]Studarr;
+	private static int cnt;
+	static {
+		Studarr=new Student[10];
+		Studarr[0]=new Student(1,"Rajeshwari","5846978545",52,84,64);
+		Studarr[1]=new Student(2,"Riya","9846978545",54,88,44);
+		
+		cnt=2;
+	}
+	
+	
+		public static void AddNewStudent()
+		{
+			Scanner sc=new Scanner(System.in);
+			
+			System.out.println("Enter new Id");
+			int SId=sc.nextInt();
+			
+			sc.nextLine();
+			
+			System.out.println("enter the name");
+			String Sname=sc.next();
+			
+			System.out.println("Enter the mobile Number");
+			String MobNo=sc.next();
+			
+			System.out.print("Enter marks for M1: ");
+	        float m1 = sc.nextFloat();
+	        
+	        System.out.print("Enter marks for M2: ");
+	        float m2 = sc.nextFloat();
+	        
+	        System.out.print("Enter marks for M3: ");
+	        float m3 = sc.nextFloat();
+			
+	        Student newStudent = new Student(SId, Sname, MobNo, m1, m2, m3);
+	        Studarr[cnt] = newStudent; 
+	        cnt++; 
+	        System.out.println("Student added successfully.");
+	    }
+			
+			
+		
+		
+		public static Student[] displayAll() {
+			return Studarr;
+		}
+		
+		
+		
+		  public static Student getById(int id) {
+	        for (Student s : Studarr) {
+	            if (s != null && s.getSId() == id) {
+	                return s;
+	            }
+	        }
+	        return null;
+	    }
+		
+		public static Student[] getBysname(String Sname) {
+			
+			Student[] arr=new Student[Studarr.length];
+			int count=0;
+			for(Student s:Studarr) {
+				if(s!=null) {
+					if(s.getSName().equals(Sname)) {
+						arr[count]=s;
+						count++;
+					}
+				}else {
+					break;
+				}
+			}
+			if(count>0) {
+				return arr;
+			}else {
+				return null;
+			}
+		}
+		
+		
+		
+		public static boolean modifyName(int id,String name) {
+			
+			Student s=getById(id);
+			if(s!=null) {
+				s.setSName(name);
+				return true;
+			}
+			return false;
+		}
+		
+		
+		public static boolean deleteById(int id) {
+		    for (int i = 0; i < cnt; i++) {
+		        if (Studarr[i].getSId() == id) {
+		            for (int j = i; j < cnt - 1; j++) {
+		                Studarr[j] = Studarr[j + 1];
+		            }
+		            Studarr[cnt - 1] = null; 
+		            cnt--;
+		            return true;
+		        }
+		    }
+		    return false;
+		}
+
+		
+		public static void CalculateAvg(int id) {
+		        Student s = getById(id);
+		        if (s != null) {
+		            float avg = (s.getM1() + s.getM2() + s.getM3()) / 3;
+		            System.out.println("Average marks for student ID " + id + ": " + avg);
+		        } else {
+		            System.out.println("Student not found.");
+		        }
+			}
+		}
+
+
+
+=================================================================================================================================================================
+
+import java.util.Scanner;
+
+public class StudentTest {
+   
+    public static void main(String[] args) {
+    	Scanner sc=new Scanner(System.in);
+        int choice;
+        do {
+            System.out.println("1. Add New Student\n2. Delete Student by Id\n3. Search Student by ID\n4. Search Student by Name\n5. Display All Students\n6. Modify Name of Student\n7. Average of Marks of Student\n8. Exit");
+            System.out.print("Choice: ");
+            choice = sc.nextInt();
+            sc.nextLine(); 
+
+            switch (choice) {
+            
+                case 1:
+                   StudentService.AddNewStudent();
+                    break;
+                    
+                    
+                case 2:
+                	System.out.println("Enter the id to Delete");
+    				int Id=sc.nextInt();
+    				boolean status=StudentService.deleteById(Id);
+    				if(status) {
+    					System.out.println("Delete Successfully...");
+    				}else
+    				{
+    					System.out.println("Not Found...");
+    				}
+    				break;
+    				
+                   
+                case 3:
+                	System.out.println("Enter the id and search");
+    				Id=sc.nextInt();
+    				Student S=StudentService.getById(Id);
+    				if(S!=null)
+    				{
+    					System.out.println(S);
+    				}else
+    				{
+    					System.out.println(" Student not found...");
+    				}
+                	
+                    break;
+                    
+                case 4:
+                	System.out.println("Enter the name to search");
+    				sc.nextLine();
+    				String Sname=sc.nextLine();
+    				Student[] arr=StudentService.getBysname(Sname);
+    				if(arr!=null) {
+    					for(Student s1:arr) {
+    						if(s1!=null) {
+    							System.out.println(s1);
+    						}else {
+    							
+    						}
+    					}
+    				}
+                    break;
+                    
+                    
+                case 5:
+                
+                    Student[] arr1 = StudentService.displayAll();
+                    for (Student s2 : arr1) {
+                        if (s2 != null) {
+                            System.out.println(s2);
+                        }
+                    }
+                    break;
+
+                	
+                	
+                
+                case 6:
+                	System.out.println("enter id to change the name");
+    				Id=sc.nextInt();
+    				System.out.println("enter new Name");
+    				String sname=sc.next();
+    				 status=StudentService.modifyName(Id, sname);
+    				if(status) {
+    					System.out.println("updated successfully");
+    				}else {
+    					System.out.println("not found");
+    				}
+                    break;
+                    
+                    
+                case 7:
+                    System.out.println("Enter ID to calculate average marks:");
+                    int avgId = sc.nextInt();
+                    Student avgStudent = StudentService.getById(avgId);
+                    if (avgStudent != null) {
+                        float average = avgStudent.calculateAverage();
+                        System.out.printf("Average marks for %s: %.2f%n", avgStudent.getSName(), average);
+                    } else {
+                        System.out.println("Student not found...");
+                    }
+                    break;
+
+                    
+                    
+                    
+                case 8:
+                    System.out.println("Exiting...");
+                    break;
+                    
+                    
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (choice != 8);
+    }
+
+}

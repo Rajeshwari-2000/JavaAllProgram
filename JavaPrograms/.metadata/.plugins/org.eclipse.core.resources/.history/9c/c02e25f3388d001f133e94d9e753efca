@@ -1,0 +1,21 @@
+package com.demo.dao;
+
+import java.util.List;
+
+import com.demo.beans.Employee;
+
+public interface EmployeeService {
+
+	void readFile(String string);
+
+	void addnewEmployee();
+
+	boolean deleteById(int id);
+
+	boolean updateById(int id, double sal);
+
+	List<Employee> getAll();
+
+	void writeFile(String string);
+
+}
